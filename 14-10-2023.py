@@ -14,3 +14,10 @@ x = "Sally"
 print(x)
 
 
+#If you want to specify the data type of a variable, this can be done with casting.
+m = str(3)    # x will be '3'
+n = int(3)    # y will be 3
+b = float(3)  # z will be 3.0
+print(m,n,b)
+
+
