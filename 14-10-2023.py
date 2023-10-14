@@ -21,3 +21,8 @@ b = float(3)  # z will be 3.0
 print(m,n,b)
 
 
+#You can get the data type of a variable with the type() function.
+print(type(m))
+print(type(b))
+
+
