@@ -2,7 +2,7 @@ import pandas as pd
 
 csv_file_path = r'C:\Users\loan\OneDrive\Desktop\filtereddata.csv'
 
-df = pd.read_csv(csv_file_path)
+df = pd.read_csv(csv_file_path, encoding='latin-1')
 
 filtered_df = df[(df['price'] >= 10) & (df['price'] <= 20)]
 
