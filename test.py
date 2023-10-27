@@ -1,16 +1,20 @@
 import pandas as pd
+import numpy as np
 
-# Đường dẫn đến tệp CSV
-csv_file_path = r'C:\Users\loan\OneDrive\Desktop\steam.csv'
+# Đọc dữ liệu từ tệp CSV
+df = pd.read_csv(r'C:\Users\loan\OneDrive\Desktop\filtereddata.csv')
 
-# Đọc tệp CSV vào một DataFrame
-df = pd.read_csv(csv_file_path)
+# Đảm bảo cột "release_date" là kiểu dữ liệu datetime (nếu chưa)
+df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
 
-# Loại bỏ dữ liệu không mong muốn trong cột "name" (ví dụ: loại bỏ ký tự "$")
-df['name'] = df['name'].str.replace('$', '')
+# Lọc ra các trò chơi phát hành vào năm 2013
+games_in_2013 = df[df['release_date'].dt.year == 2013]
 
-half_rows = len(df) // 2  # Chọn nửa dữ liệu
-df = df.iloc[:half_rows]
+# Sắp xếp theo ngày phát hành
+games_in_2013 = games_in_2013.sort_values(by='release_date')
 
-df.to_csv(csv_file_path, index=False)
+# Chọn 15 trò chơi đầu tiên
+random_games_2013 = games_in_2013.head(15)
 
+# In danh sách 15 trò chơi ngẫu nhiên của năm 2013
+print(random_games_2013)

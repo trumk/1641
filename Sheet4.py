@@ -1,11 +1,14 @@
 import pandas as pd
+import numpy as np
+# Đọc dữ liệu từ tệp CSV
+df = pd.read_csv(r'C:\Users\loan\OneDrive\Desktop\filtereddata.csv')
 
-csv_file_path = r'C:\Users\loan\OneDrive\Desktop\filtereddata.csv'
+df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
 
-df = pd.read_csv(csv_file_path, encoding='latin-1')
+games_in_2013 = df[df['release_date'].dt.year == 2013]
 
-df = df.sort_values(by=['average_playtime', 'owners'], ascending=[False, False])
+games_in_2013 = games_in_2013.sort_values(by='release_date')
 
-top_8_games = df.head(8)
+random_games_2013 = games_in_2013.head(15)
 
-print(top_8_games)
+print(random_games_2013)
