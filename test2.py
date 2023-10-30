@@ -1,16 +1,15 @@
 import pandas as pd
+import numpy as np
 
-# Đường dẫn đến tệp CSV
-csv_file_path = r'C:\Users\loan\OneDrive\Desktop\steam.csv'
+csv_file_path = r'C:\Users\loan\OneDrive\Desktop\filtereddata.csv'
 
-# Đọc tệp CSV vào một DataFrame
-df = pd.read_csv(csv_file_path)
+df = pd.read_csv(csv_file_path, encoding='latin-1')
 
-# Sắp xếp DataFrame theo cột "average_playtime" theo thứ tự giảm dần
-df = df.sort_values(by='average_playtime', ascending=False)
+#them cot region
+# countries_in_southeast_asia = ["Vietnam", "Thailand", "Indonesia", "Malaysia", "Singapore", "Philippines", "Myanmar", "Cambodia", "Laos", "Brunei", "Timor-Leste"]
 
-# Chọn 8 tựa game có average_playtime cao nhất
-top_8_games = df.head(8)
+# df['region'] = [" ".join(np.random.choice(countries_in_southeast_asia, np.random.randint(1, 4))) for _ in range(len(df))]
 
-# In ra danh sách 8 tựa game này
-print(top_8_games)
+df = df.drop('region', axis=1) #xoa cot region
+
+df.to_csv(r'C:\Users\loan\OneDrive\Desktop\filtereddata.csv', index=False)
